@@ -1,0 +1,118 @@
+.button {
+  background-color: transparent;
+  border: none;
+  padding: 1rem 3rem;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.multi-button {
+  font-weight: 500;
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+
+.green-button {
+  background-color: $light-green-2;
+  color: $white !important;
+  // margin-right: 2rem;
+
+  &:hover {
+    background-color: $dark-green-1;
+  }
+
+  @media only screen and (max-width: $bp-minimal) {
+    margin-right: 0rem;
+    margin-bottom: 2rem;
+  }
+}
+.white-button {
+  color: $light-green-3;
+  background-color: $white;
+  box-shadow: 0rem 0rem 1rem 0.1rem rgba($black, 0.2);
+  &:hover {
+    color: $dark-green-1;
+    box-shadow: 0rem 0.1rem 1rem 0.5rem rgba($black, 0.2);
+  }
+}
+
+.icon-green {
+  color: $light-green-4;
+}
+
+.link {
+  &,
+  &:link,
+  &:visited {
+    // color: $black;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+  }
+
+  &:hover {
+    // text-decoration-line: underline;
+  }
+
+  &:active,
+  &:focus {
+    outline: none;
+  }
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 0;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.input {
+  border: 1px solid rgba($black, 0.2);
+  // padding: 0.5rem 2rem;
+  font-family: inherit;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.apple-button {
+  border: 1px solid $black;
+  border-radius: 1rem;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__icon {
+    padding: 1rem 0rem;
+  }
+
+  &__text {
+    display: inline-block;
+    padding: 1rem 1rem;
+
+    font-size: 1.4rem;
+
+    font-weight: 500;
+  }
+}
