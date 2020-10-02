@@ -22,7 +22,7 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <Switch>
-          <PrivateRoute component={Home} path="/home" />
+          <PublicRoute component={Home} path="/home" />
           <PublicRoute component={Login} path="/login" restricted={true} />
         </Switch>
       </Router>

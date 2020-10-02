@@ -1,15 +1,32 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect } from "react";
 
 import { connect } from "react-redux";
+import { CheckProtected, loginUser } from "../../actions/AuthActions";
 
-const Login = () => {
-  return <div>Login Page</div>;
+const Login = (props) => {
+  useEffect(() => {
+    // props.loginUser();
+  }, []);
+
+  return (
+    <div>
+      <div>Login Page</div>
+      <div>{props.accessToken ? props.accessToken : ""}</div>
+      <button onClick={() => props.CheckProtected(props.accessToken)}>
+        Click
+      </button>
+    </div>
+  );
 };
 
 const mapStateToProps = (state) => ({
-  state: state,
+  accessToken: state.auth.accessToken,
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  loginUser,
+  CheckProtected,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

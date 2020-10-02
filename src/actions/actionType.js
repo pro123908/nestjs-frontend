@@ -1,2 +1,4 @@
-export const ACTION_1 = "ACTION_1";
-export const ACTION_2 = "ACTION_2";
+export const LOGIN_USER = "LOGIN_USER";
+export const CHECK_PROTECTED = "CHECK_PROTECTED";
+
+export const SET_AUTH_TOKEN = "SET_AUTH_TOKEN";

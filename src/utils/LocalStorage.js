@@ -5,3 +5,11 @@ export const handleGoogleUserInLocalStorage = (googleUser = null) => {
     localStorage.setItem("GOOGLE_USER", JSON.stringify(googleUser));
   }
 };
+
+export const handleAccessTokenInLocalStorage = (key, token) => {
+  if (token) {
+    return localStorage.setItem(key, JSON.stringify(token));
+  } else if (localStorage.getItem(key)) {
+    return JSON.parse(localStorage.getItem(key));
+  }
+};
