@@ -1,29 +1,47 @@
 .cfb-inputWithIcon {
-  align-self: stretch;
-  border: 1.5px solid rgba($black, 0.1);
-  margin-bottom: 2rem;
+  &-container {
+    align-self: stretch;
+    height: 7rem;
+  }
+
+  &__error {
+    font-size: 1.2rem;
+    color: lighten($color: $orange-1, $amount: 10%);
+    letter-spacing: 0.1rem;
+  }
+
+  // border: 1.5px solid rgba($black, 0.1);
+  border: none;
+  border-bottom: 1.5px solid rgba($white, 0.7);
+
+  background-color: transparent;
+
   // padding: 0.5rem 2rem;
   display: flex;
   align-items: center;
-  background-color: $black;
 
   // &:focus-within {
   //   border: 1.5px solid darken($color: $dark-green-1, $amount: 10%);
   // }
+  color: rgba($color: $white, $alpha: 0.7);
 
   &__icon {
-    margin-right: 1rem;
+    margin-right: 0.5rem;
     font-size: 2rem;
   }
 
   &__input {
     border: none;
-    padding: 0.4rem 1rem;
+    padding: 0.4rem 0;
     font-weight: 500;
     flex: 1;
+    background-color: inherit;
+    color: $white;
+
+    padding-right: 1rem;
 
     &::-webkit-input-placeholder {
-      color: $black;
+      color: rgba($color: $white, $alpha: 0.7);
     }
 
     &:focus {

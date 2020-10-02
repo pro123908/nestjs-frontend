@@ -4,11 +4,17 @@
 
   margin-top: 2rem;
 
-  padding: 0.5rem 1.5rem;
+  padding: 1rem 3rem;
   transition: all 0.5s;
-  border: 1px solid $black;
-  border-radius: 3px;
+  border: none;
+  border: 1px solid $white;
+
+  border-radius: 50px;
   margin-bottom: 4rem;
+  display: block;
+  color: $blue-2;
+
+  box-shadow: 0 4rem 5rem rgba($color: $black, $alpha: 0.5);
 
   @media only screen and (max-width: $bp-smallest) {
     margin-top: 1rem;
@@ -19,7 +25,7 @@
   }
 
   &:hover {
-    background-color: $black;
+    background-color: $blue-2;
     color: $white;
 
     border: 1px solid $white;

@@ -5,9 +5,9 @@ import { SET_AUTH_TOKEN } from "../actions/actionType";
 import { handleAccessTokenInLocalStorage } from "../utils/LocalStorage";
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
-store.dispatch({
-  type: SET_AUTH_TOKEN,
-  payload: handleAccessTokenInLocalStorage("ACCESS_TOKEN"),
-});
+// store.dispatch({
+//   type: SET_AUTH_TOKEN,
+//   payload: handleAccessTokenInLocalStorage("ACCESS_TOKEN"),
+// });
 
 export default store;
