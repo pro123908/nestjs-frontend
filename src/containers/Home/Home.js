@@ -1,13 +1,18 @@
 import React from "react";
 import { connect } from "react-redux";
 
-const Home = () => {
-  return <div>Home Page</div>;
+const Home = (props) => {
+  return (
+    <div>
+      <div>{props.auth.name}</div>
+      <div>{props.auth.email}</div>
+    </div>
+  );
 };
 
 const mapStateToProps = (state) => {
   return {
-    state: StaticRange,
+    auth: state.auth,
   };
 };
 

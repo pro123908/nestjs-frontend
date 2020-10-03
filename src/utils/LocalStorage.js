@@ -13,3 +13,11 @@ export const handleAccessTokenInLocalStorage = (key, token) => {
     return JSON.parse(localStorage.getItem(key));
   }
 };
+
+export const handleUserInLocalStorage = (key, data) => {
+  if (data) {
+    return localStorage.setItem(key, JSON.stringify(data));
+  } else if (localStorage.getItem(key)) {
+    return JSON.parse(localStorage.getItem(key));
+  }
+};

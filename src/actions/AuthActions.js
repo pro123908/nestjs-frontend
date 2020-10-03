@@ -1,6 +1,14 @@
 import axios from "axios";
-import { handleAccessTokenInLocalStorage } from "../utils/LocalStorage";
-import { LOGIN_USER, REQUEST_ERROR } from "./actionType";
+import {
+  handleAccessTokenInLocalStorage,
+  handleUserInLocalStorage,
+} from "../utils/LocalStorage";
+import {
+  CLEAR_REGISTRATION_ERROR,
+  LOGIN_USER,
+  REQUEST_ERROR,
+  SIGN_UP_USER,
+} from "./actionType";
 
 export const loginUser = (email, password, history) => {
   return async (dispatch) => {
@@ -11,11 +19,12 @@ export const loginUser = (email, password, history) => {
       });
 
       console.log(response.data);
-      handleAccessTokenInLocalStorage(
-        "ACCESS_TOKEN",
-        response.data.accessToken
-      );
-      dispatch({ type: LOGIN_USER, payload: response.data.accessToken });
+      // handleAccessTokenInLocalStorage(
+      //   "ACCESS_TOKEN",
+      //   response.data.accessToken
+      // );
+      handleUserInLocalStorage("xord-user", response.data);
+      dispatch({ type: LOGIN_USER, payload: response.data });
       history.push("/home");
     } catch (error) {
       console.log(error.response.data);
@@ -38,9 +47,9 @@ export const registerUser = (name, email, password, history) => {
       //   "ACCESS_TOKEN",
       //   response.data.accessToken
       // );
-      // dispatch({ type: SIGN_UP_USER
-      //   , payload: response.data.accessToken });
-      // history.push("/home");
+      dispatch({ type: SIGN_UP_USER, payload: response.data });
+
+      history.push("/login");
     } catch (error) {
       console.log(error.response.data);
       dispatch({ type: REQUEST_ERROR, payload: error.response.data });
@@ -63,5 +72,11 @@ export const CheckProtected = (token) => {
     } catch (error) {
       console.log(error);
     }
+  };
+};
+
+export const clearRegistrationError = () => {
+  return async (dispatch) => {
+    dispatch({ type: CLEAR_REGISTRATION_ERROR });
   };
 };

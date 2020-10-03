@@ -26,7 +26,7 @@ const App = () => {
           {/* <PublicRoute component={Login} path="/" restricted={true} /> */}
           <PublicRoute component={Login} path="/login" restricted={true} />
           <PublicRoute component={SignUp} path="/sign-up" restricted={true} />
-          <PublicRoute component={Home} path="/home" />
+          <PrivateRoute component={Home} path="/home" />
         </Switch>
       </Router>
     </Provider>
