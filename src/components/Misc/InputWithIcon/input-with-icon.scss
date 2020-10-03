@@ -28,20 +28,27 @@
   &__icon {
     margin-right: 0.5rem;
     font-size: 2rem;
+    margin-left: 0.5rem;
   }
 
   &__input {
     border: none;
-    padding: 0.4rem 0;
+
     font-weight: 500;
     flex: 1;
     background-color: inherit;
     color: $white;
 
     padding-right: 1rem;
+    height: 3rem;
 
     &::-webkit-input-placeholder {
       color: rgba($color: $white, $alpha: 0.7);
+    }
+
+    &:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0px 1000px white inset;
+      background-color: transparent;
     }
 
     &:focus {
@@ -59,4 +66,7 @@
   //     box-shadow: 0 0.5rem 1rem rgba($color: $black, $alpha: 0.3);
   //   }
   // }
+}
+
+input:-webkit-autofill {
 }

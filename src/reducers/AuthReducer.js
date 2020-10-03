@@ -1,11 +1,13 @@
 import {
   CHECK_PROTECTED,
   LOGIN_USER,
+  REQUEST_ERROR,
   SET_AUTH_TOKEN,
 } from "../actions/actionType";
 
 const initialState = {
   accessToken: "",
+  error: {},
 };
 
 const Reducer1 = (state = initialState, action) => {
@@ -18,6 +20,9 @@ const Reducer1 = (state = initialState, action) => {
 
     case SET_AUTH_TOKEN:
       return { ...state, accessToken: action.payload };
+
+    case REQUEST_ERROR:
+      return { ...state, error: action.payload };
 
     default:
       return state;

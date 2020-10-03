@@ -1,8 +1,8 @@
-import axios from "axios";
 import { Formik } from "formik";
 import React, { useEffect } from "react";
 
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { CheckProtected, loginUser } from "../../actions/AuthActions";
 import ButtonWithIcon from "../../components/Misc/ButtonWithIcon/ButtonWithIcon";
 import InputWithIcon from "../../components/Misc/InputWithIcon/InputWithIcon";
@@ -35,8 +35,18 @@ const Login = (props) => {
             <div className="login-box-right__desc">
               Heyyyy, let's get started
             </div>
+            <div
+              className={`login-box-right__server-error ${
+                !props.error.message ? "op-0" : ""
+              }`}
+            >
+              {props.error.message ? props.error.message : ""}
+            </div>
             <Formik
-              initialValues={{ email: "", password: "" }}
+              initialValues={{
+                email: "pro123908@gmail.com",
+                password: "home123",
+              }}
               validate={(values) => {
                 const errors = {};
                 if (!values.email) {
@@ -48,13 +58,14 @@ const Login = (props) => {
                 }
 
                 if (!values.password) errors.password = "Required";
-                else if (values.password.length < 8)
-                  errors.password = "Minimum 8 characters long";
+                else if (values.password.length < 6)
+                  errors.password = "Minimum 6 characters long";
                 return errors;
               }}
-              onSubmit={(values, { setSubmitting }) => {
+              onSubmit={({ email, password }, { setSubmitting }) => {
                 setTimeout(() => {
-                  alert(JSON.stringify(values, null, 2));
+                  // alert(JSON.stringify(values, null, 2));
+                  props.loginUser(email, password, props.history);
                   setSubmitting(false);
                 }, 400);
               }}
@@ -110,9 +121,12 @@ const Login = (props) => {
               )}
             </Formik>
 
-            <div className="login-box-right__bottom-text">
-              New here? Sign Up
-            </div>
+            <Link className="link login-box-right__bottom-text" to="/sign-up">
+              New here?{" "}
+              <span style={{ fontWeight: 600, marginLeft: ".2rem" }}>
+                Sign Up
+              </span>
+            </Link>
           </div>
         </div>
       </div>
@@ -126,6 +140,7 @@ const Login = (props) => {
 
 const mapStateToProps = (state) => ({
   accessToken: state.auth.accessToken,
+  error: state.auth.error,
 });
 
 const mapDispatchToProps = {

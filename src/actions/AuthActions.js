@@ -1,13 +1,13 @@
 import axios from "axios";
 import { handleAccessTokenInLocalStorage } from "../utils/LocalStorage";
-import { LOGIN_USER } from "./actionType";
+import { LOGIN_USER, REQUEST_ERROR } from "./actionType";
 
-export const loginUser = (email, password) => {
+export const loginUser = (email, password, history) => {
   return async (dispatch) => {
     try {
       const response = await axios.post("http://localhost:3000/users/login", {
-        email: "pro123908@gmail.com",
-        password: "home123",
+        email,
+        password,
       });
 
       console.log(response.data);
@@ -16,14 +16,36 @@ export const loginUser = (email, password) => {
         response.data.accessToken
       );
       dispatch({ type: LOGIN_USER, payload: response.data.accessToken });
+      history.push("/home");
     } catch (error) {
-      console.error(error);
+      console.log(error.response.data);
+      dispatch({ type: REQUEST_ERROR, payload: error.response.data });
     }
   };
 };
 
-export const RegisterUser = (name, email, password) => {
-  return async (dispatch) => {};
+export const registerUser = (name, email, password, history) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post("http://localhost:3000/users", {
+        name,
+        email,
+        password,
+      });
+
+      console.log(response.data);
+      // handleAccessTokenInLocalStorage(
+      //   "ACCESS_TOKEN",
+      //   response.data.accessToken
+      // );
+      // dispatch({ type: SIGN_UP_USER
+      //   , payload: response.data.accessToken });
+      // history.push("/home");
+    } catch (error) {
+      console.log(error.response.data);
+      dispatch({ type: REQUEST_ERROR, payload: error.response.data });
+    }
+  };
 };
 
 export const CheckProtected = (token) => {
