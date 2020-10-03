@@ -1,20 +1,22 @@
 .cfb-buttonWithIcon {
   background-color: $white;
-  align-self: center;
 
   margin-top: 2rem;
 
   padding: 0.5rem 3rem;
   transition: all 0.5s;
   border: none;
-  border: 1px solid $white;
+  border: 1px solid transparent;
 
   border-radius: 50px;
   margin-bottom: 4rem;
-  display: block;
+
   color: $blue-2;
 
   box-shadow: 0 3rem 5rem rgba($color: $black, $alpha: 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   @media only screen and (max-width: $bp-smallest) {
     margin-top: 1rem;

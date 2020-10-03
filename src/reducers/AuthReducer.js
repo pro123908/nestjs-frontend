@@ -1,8 +1,8 @@
-import { act } from "react-dom/test-utils";
 import {
   CHECK_PROTECTED,
   CLEAR_REGISTRATION_ERROR,
   LOGIN_USER,
+  LOGOUT_USER,
   REQUEST_ERROR,
   SET_AUTH_TOKEN,
   SIGN_UP_USER,
@@ -16,7 +16,7 @@ const initialState = {
   name: "",
 };
 
-const Reducer1 = (state = initialState, action) => {
+const AuthReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_USER:
       return {
@@ -41,9 +41,12 @@ const Reducer1 = (state = initialState, action) => {
     case CLEAR_REGISTRATION_ERROR:
       return { ...state, error: {} };
 
+    case LOGOUT_USER:
+      return { ...state, accessToken: "" };
+
     default:
       return state;
   }
 };
 
-export default Reducer1;
+export default AuthReducer;

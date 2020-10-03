@@ -124,3 +124,21 @@
 .op-0 {
   opacity: 0;
 }
+
+#logout-button {
+  position: absolute;
+  right: 50px;
+  top: 20px;
+  background-color: #1363bc;
+  color: #fff;
+  border-width: 2px;
+
+  &:hover {
+    &:hover {
+      background-color: $white;
+      color: $blue-2;
+
+      border: 2px solid $blue-2;
+    }
+  }
+}

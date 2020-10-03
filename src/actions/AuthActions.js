@@ -1,6 +1,6 @@
 import axios from "axios";
 import {
-  handleAccessTokenInLocalStorage,
+  clearLocalStorage,
   handleUserInLocalStorage,
 } from "../utils/LocalStorage";
 import {
@@ -8,6 +8,7 @@ import {
   LOGIN_USER,
   REQUEST_ERROR,
   SIGN_UP_USER,
+  LOGOUT_USER,
 } from "./actionType";
 
 export const loginUser = (email, password, history) => {
@@ -78,5 +79,13 @@ export const CheckProtected = (token) => {
 export const clearRegistrationError = () => {
   return async (dispatch) => {
     dispatch({ type: CLEAR_REGISTRATION_ERROR });
+  };
+};
+
+export const logoutUser = (history) => {
+  return (dispatch) => {
+    dispatch({ type: LOGOUT_USER });
+    clearLocalStorage("xord-user");
+    history.push("/login");
   };
 };

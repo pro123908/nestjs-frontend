@@ -21,3 +21,15 @@ export const handleUserInLocalStorage = (key, data) => {
     return JSON.parse(localStorage.getItem(key));
   }
 };
+
+export const clearLocalStorage = (key) => {
+  if (key) localStorage.removeItem(key);
+};
+
+export const handleInAndOutFromLocalStorage = (key, data) => {
+  if (data) {
+    return localStorage.setItem(key, JSON.stringify(data));
+  } else if (localStorage.getItem(key)) {
+    return JSON.parse(localStorage.getItem(key));
+  }
+};

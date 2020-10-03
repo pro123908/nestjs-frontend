@@ -6,11 +6,13 @@ const ButtonWithIcon = ({
   onClick,
   type,
   disabled,
+  classes,
+
   ...props
 }) => {
   return (
     <button
-      className="button cfb-buttonWithIcon"
+      className={`button cfb-buttonWithIcon ${classes}`}
       onClick={onClick}
       type={type}
       disabled={disabled}
