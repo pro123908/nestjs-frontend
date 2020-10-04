@@ -3,6 +3,7 @@ import {
   DELETE_PRODUCT,
   GET_PRODUCT,
   GET_PRODUCTS,
+  SET_LOADING,
   UPDATE_PRODUCT,
 } from "../actions/actionType";
 
@@ -10,12 +11,17 @@ const initialState = {
   product: {},
   products: [],
   error: {},
+  loading: false,
 };
 
 export const ProductsReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_PRODUCT:
-      return { ...state, products: [...state.products, action.payload] };
+      return {
+        ...state,
+        products: [...state.products, action.payload],
+        loading: false,
+      };
 
     case DELETE_PRODUCT:
       return {
@@ -23,6 +29,7 @@ export const ProductsReducer = (state = initialState, action) => {
         products: state.products.filter(
           (product) => product.id !== action.payload
         ),
+        loading: false,
       };
 
     case UPDATE_PRODUCT:
@@ -43,6 +50,12 @@ export const ProductsReducer = (state = initialState, action) => {
       return {
         ...state,
         products: action.payload,
+      };
+
+    case SET_LOADING:
+      return {
+        ...state,
+        loading: action.payload,
       };
 
     default:

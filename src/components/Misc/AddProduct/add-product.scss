@@ -1,0 +1,73 @@
+.add-product {
+  width: 60rem;
+  box-shadow: 0 2rem 3rem rgba($color: $black, $alpha: 0.5);
+  background: linear-gradient(to right, $blue-2, $blue-1);
+
+  margin-bottom: 10rem;
+
+  color: $white;
+  padding: 2rem 2rem 2rem 4rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+
+  &__title {
+    &-label {
+    }
+
+    &-input {
+      border: none;
+
+      display: block;
+      margin-bottom: 2rem;
+      padding: 0.5rem 1rem;
+      width: 80%;
+      background-color: $white;
+      border: 1px solid lighten($color: $white, $amount: 50%);
+      border-radius: 5px;
+      color: $black;
+
+      &::-webkit-input-placeholder {
+        color: rgba($color: $black, $alpha: 0.5);
+      }
+    }
+  }
+
+  &__desc {
+    &-label {
+    }
+
+    &-input {
+      border: none;
+      // background-color: transparent;
+
+      display: block;
+      margin-bottom: 2rem;
+      padding: 0.5rem 1rem;
+      width: 80%;
+      height: 15rem;
+      background-color: $white;
+      border: 1px solid lighten($color: $white, $amount: 50%);
+      border-radius: 5px;
+      color: $black;
+
+      &::-webkit-input-placeholder {
+        color: rgba($color: $black, $alpha: 0.5);
+      }
+    }
+  }
+
+  &__button {
+    background-color: $white;
+    color: $blue-2;
+    align-self: center;
+    border-radius: 50px;
+    font-weight: 600;
+    border: 1px solid $white;
+
+    &:hover {
+      background-color: $blue-2;
+      color: $white;
+    }
+  }
+}

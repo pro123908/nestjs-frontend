@@ -18,9 +18,13 @@ import PrivateRoute from "./utils/PrivateRoute";
 import PublicRoute from "./utils/PublicRoute";
 import SignUp from "./containers/SignUp/SignUp";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const App = () => {
   return (
     <Provider store={store}>
+      <ToastContainer />
       <Router>
         <Switch>
           {/* <PublicRoute component={Login} path="/" restricted={true} /> */}

@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 
-const Product = ({ product: { title, description } }) => {
-  const [editMode, setEditMode] = useState(true);
+const Product = ({
+  product: { id, title: prodTitle, description: prodDescription },
+  onDelete,
+  onUpdate,
+}) => {
+  const [title, setTitle] = useState(prodTitle);
+  const [description, setDescription] = useState(prodDescription);
+
+  const [editMode, setEditMode] = useState(false);
   return (
     <div className="product">
       <div className="product__text">
@@ -12,6 +19,7 @@ const Product = ({ product: { title, description } }) => {
             className="input product__title-input"
             placeholder="Product Title"
             value={title}
+            onChange={(e) => setTitle(e.target.value)}
           />
         )}
         {!editMode ? (
@@ -20,13 +28,25 @@ const Product = ({ product: { title, description } }) => {
           <textarea
             className="input product__desc-input"
             placeholder="Product Description"
-            // value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            value={description}
           />
         )}
         {editMode ? (
-          <div className="product__edit-actions">
-            <i class="far fa-check-circle product__edit-icons-action"></i>
-            <i class="far fa-times-circle product__edit-icons-action"></i>
+          <div className="product__edits-actions">
+            <div
+              className=" product__edits-action product__edits-tick"
+              onClick={() => {
+                onUpdate(id, { title, description });
+                setEditMode((val) => !val);
+              }}
+            >
+              <i class="fas fa-check"></i>
+            </div>
+
+            <div className=" product__edits-action product__edits-cross">
+              <i class="fas fa-times"></i>
+            </div>
           </div>
         ) : (
           ""
@@ -35,11 +55,14 @@ const Product = ({ product: { title, description } }) => {
       <div className="product__actions">
         <div
           className="product__edit product__action"
-          onClick={() => setEditMode(true)}
+          onClick={() => setEditMode((val) => !val)}
         >
           <i class="far fa-edit"></i>
         </div>
-        <div className="product__delete product__action">
+        <div
+          className="product__delete product__action"
+          onClick={() => onDelete(id)}
+        >
           <i class="far fa-trash-alt"></i>
         </div>
       </div>

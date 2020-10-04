@@ -24,10 +24,14 @@ const store = createStore(
 //   payload: handleAccessTokenInLocalStorage("ACCESS_TOKEN"),
 // });
 
-store.dispatch({
-  type: LOGIN_USER,
-  payload: handleUserInLocalStorage("xord-user"),
-});
+let currentUser = handleUserInLocalStorage("xord-user");
+if (currentUser) {
+  store.dispatch({
+    type: LOGIN_USER,
+    payload: handleUserInLocalStorage("xord-user"),
+  });
+}
+
 let products = handleInAndOutFromLocalStorage("products");
 
 store.dispatch({

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { handleInAndOutFromLocalStorage } from "../utils/LocalStorage";
+import showToast from "../utils/toast";
 
 import {
   ADD_PRODUCT,
@@ -7,6 +8,7 @@ import {
   UPDATE_PRODUCT,
   GET_PRODUCT,
   GET_PRODUCTS,
+  SET_LOADING,
 } from "./actionType";
 
 export const getProduct = (productId) => {
@@ -44,37 +46,45 @@ export const getProducts = () => {
 
 export const addProduct = (title, description, price) => {
   return async (dispatch) => {
-    try {
-      const response = await axios.post("http://localhost:3000/products", {
-        title,
-        description,
-        price,
-      });
+    dispatch(setLoading(true));
+    setTimeout(async () => {
+      try {
+        const response = await axios.post("http://localhost:3000/products", {
+          title,
+          description,
+          price,
+        });
 
-      console.log(response.data);
+        console.log(response.data);
 
-      dispatch({ type: ADD_PRODUCT, payload: response.data });
-    } catch (error) {
-      console.log(error.response.data);
-      // dispatch({ type: REQUEST_ERROR, payload: error.response.data });
-    }
+        dispatch({ type: ADD_PRODUCT, payload: response.data });
+        showToast("Product Added", "success", 2000);
+      } catch (error) {
+        console.log(error.response.data);
+        // dispatch({ type: REQUEST_ERROR, payload: error.response.data });
+      }
+    }, 1000);
   };
 };
 
 export const deleteProduct = (productId) => {
   return async (dispatch) => {
-    try {
-      const response = await axios.delete(
-        `http://localhost:3000/products/${productId}`
-      );
+    dispatch(setLoading(true));
+    setTimeout(async () => {
+      try {
+        const response = await axios.delete(
+          `http://localhost:3000/products/${productId}`
+        );
 
-      console.log(response.data);
+        console.log(response.data);
 
-      dispatch({ type: DELETE_PRODUCT, payload: response.data.productId });
-    } catch (error) {
-      console.log(error.response.data);
-      // dispatch({ type: REQUEST_ERROR, payload: error.response.data });
-    }
+        dispatch({ type: DELETE_PRODUCT, payload: productId });
+        showToast("Product Deleted", "success", 2000);
+      } catch (error) {
+        console.log(error.response.data);
+        // dispatch({ type: REQUEST_ERROR, payload: error.response.data });
+      }
+    }, 1000);
   };
 };
 
@@ -89,9 +99,15 @@ export const updateProduct = (productId, fieldsToBeUpdated) => {
       console.log(response.data._id);
 
       dispatch({ type: UPDATE_PRODUCT, payload: response.data });
+      showToast("Product Updated", "success", 2000);
     } catch (error) {
       console.log(error.response.data);
       // dispatch({ type: REQUEST_ERROR, payload: error.response.data });
     }
   };
 };
+
+export const setLoading = (loading) => ({
+  type: SET_LOADING,
+  payload: loading,
+});
