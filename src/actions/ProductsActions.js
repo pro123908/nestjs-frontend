@@ -9,6 +9,7 @@ import {
   GET_PRODUCT,
   GET_PRODUCTS,
   SET_LOADING,
+  REQUEST_ERROR,
 } from "./actionType";
 
 export const getProduct = (productId) => {
@@ -38,8 +39,11 @@ export const getProducts = () => {
       dispatch({ type: GET_PRODUCTS, payload: response.data });
       handleInAndOutFromLocalStorage("products", response.data);
     } catch (error) {
-      console.log(error.response.data);
-      // dispatch({ type: REQUEST_ERROR, payload: error.response.data });
+      if (error.response?.data) {
+        dispatch({ type: REQUEST_ERROR, payload: error.response.data });
+      } else {
+        console.log("SERVER ERROR!!!");
+      }
     }
   };
 };
