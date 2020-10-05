@@ -27,10 +27,15 @@ const App = () => {
       <ToastContainer />
       <Router>
         <Switch>
-          {/* <PublicRoute component={Login} path="/" restricted={true} /> */}
+          <Route exact path="/">
+            <Redirect to="home" />
+          </Route>
           <PublicRoute component={Login} path="/login" restricted={true} />
           <PublicRoute component={SignUp} path="/sign-up" restricted={true} />
           <PrivateRoute component={Home} path="/home" />
+          <Route path="*">
+            <Redirect to="login" />
+          </Route>
         </Switch>
       </Router>
     </Provider>

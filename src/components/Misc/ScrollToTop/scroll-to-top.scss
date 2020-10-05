@@ -1,0 +1,33 @@
+.scroll-to-top {
+  background-color: $white;
+  position: fixed;
+  bottom: 10px;
+  right: 40px;
+
+  margin-top: 2rem;
+
+  padding: 0.5rem 3rem;
+  transition: all 0.5s;
+  border: none;
+  border: 2px solid $blue-2;
+
+  border-radius: 50px;
+  margin-bottom: 4rem;
+
+  color: $blue-2;
+
+  box-shadow: 0 3rem 5rem rgba($color: $black, $alpha: 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+
+  &:hover {
+    background-color: $blue-2;
+    color: $white;
+
+    border: 0px solid $white;
+    //   font-weight: 500;
+  }
+}

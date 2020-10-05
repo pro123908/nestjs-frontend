@@ -1,19 +1,26 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 import showToast from "../../../utils/toast";
 
 const AddProduct = ({ addProduct }) => {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
+  const eleRef = useRef(null);
+
+  const scrollToProduct = () => {
+    console.log(eleRef.current.offsetTop);
+    window.scrollTo(0, eleRef.current.offsetTop);
+  };
 
   const addProductHandler = () => {
     showToast("Product is being added", "info", 1000);
     addProduct(title, desc);
+    scrollToProduct();
     setTitle("");
     setDesc("");
   };
   return (
-    <div className="add-product">
+    <div className="add-product" ref={eleRef}>
       <div className="add-product__title">
         <div className="add-product__title-label">Title</div>
         <input

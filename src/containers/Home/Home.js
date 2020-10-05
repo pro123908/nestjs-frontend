@@ -13,6 +13,8 @@ import AddProduct from "../../components/Misc/AddProduct";
 import ButtonWithIcon from "../../components/Misc/ButtonWithIcon/ButtonWithIcon";
 import Product from "../../components/Misc/Product";
 import LoadingOverlay from "react-loading-overlay";
+import ScrollProgress from "../../components/Misc/ScrollProgress";
+import ScrollToTop from "../../components/Misc/ScrollToTop";
 
 // import { ToastContainer } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.css";
@@ -20,6 +22,7 @@ import LoadingOverlay from "react-loading-overlay";
 const Home = (props) => {
   useEffect(() => {
     props.getProducts();
+
     // setTimeout(() => {
     //   // props.updateProduct("5f78771999a9551afced6984", {
     //   //   description: "Updated XYYY React",
@@ -30,7 +33,10 @@ const Home = (props) => {
   }, []);
   console.log("loading : ", props.loading);
   return (
-    <LoadingOverlay active={props.loading} spinner>
+    <>
+      <ScrollToTop />
+      <ScrollProgress />
+
       <div className="home">
         <div className="home-box">
           <AddProduct addProduct={props.addProduct} />
@@ -51,7 +57,7 @@ const Home = (props) => {
           onClick={() => props.logoutUser(props.history)}
         />
       </div>
-    </LoadingOverlay>
+    </>
   );
 };
 
